@@ -1,0 +1,54 @@
+body {
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+header {
+  color: rgb(80, 80, 90);
+}
+
+header h1 {
+  margin-bottom: 0;
+  color: rgb(239, 148, 2);
+}
+
+hr {
+  color: rgb(165, 165, 165);
+}
+
+footer {
+  padding-top: 25px;
+}
+
+.temperature {
+  font-size: 5rem;
+  line-height: 1;
+}
+
+.temperature i {
+  color: rgb(255, 201, 22);
+}
+
+.units {
+  line-height: 2.5;
+}
+
+.weather-app {
+  box-shadow: 0 30px 50px rgb(65 50 100 / 8%);
+  display: block;
+  margin: 80px auto;
+  max-width: 600px;
+  padding: 25px 30px;
+}
+
+.weather-description ul {
+  list-style: none;
+  color: rgb(63, 63, 72);
+  font-size: 1rem;
+  padding-left: 20px;
+}
+
+.weather-condition {
+  color: rgb(255, 201, 22);
+  padding-bottom: 5px;
+  font-weight: 600;
+}
