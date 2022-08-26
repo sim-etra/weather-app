@@ -19,12 +19,21 @@ footer {
   padding-top: 25px;
 }
 
-.temperature {
+.weather-app {
+  box-shadow: 0 30px 50px rgb(65 50 100 / 8%);
+  display: block;
+  margin: 80px auto;
+  max-width: 600px;
+  padding: 25px 30px;
+}
+
+.temperature,
+.weather-icon {
   font-size: 5rem;
   line-height: 1;
 }
 
-.temperature i {
+.weather-icon {
   color: rgb(255, 201, 22);
 }
 
@@ -32,12 +41,8 @@ footer {
   line-height: 2.5;
 }
 
-.weather-app {
-  box-shadow: 0 30px 50px rgb(65 50 100 / 8%);
-  display: block;
-  margin: 80px auto;
-  max-width: 600px;
-  padding: 25px 30px;
+.current-date {
+  color: #000;
 }
 
 .weather-description ul {
@@ -51,4 +56,8 @@ footer {
   color: rgb(255, 201, 22);
   padding-bottom: 5px;
   font-weight: 600;
+}
+
+.weather-condition::first-letter {
+  text-transform: capitalize;
 }
