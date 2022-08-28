@@ -29,7 +29,7 @@
             placeholder="Type a city..."
             autocomplete="off"
           />
-          <input type="button" value="⭐" class="input-group-text gps-search" />
+          <input type="button" value="📍" class="input-group-text gps-search" />
           <input
             type="submit"
             value="Search"
@@ -61,7 +61,10 @@
               id="icon"
             />
             <span class="temperature" id="temperature"></span>
-            <span class="units">°C | °F</span>
+            <span class="units"
+              ><a href="#" id="celsius-link" class="active">°C</a> |
+              <a href="#" id="fahrenheit-link">°F</a></span
+            >
           </div>
         </div>
         <footer>
