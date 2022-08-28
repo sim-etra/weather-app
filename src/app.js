@@ -34,10 +34,48 @@ function displayTemperature(response) {
   document.getElementById("date").innerHTML = formatDate(
     response.data.dt * 1000
   );
+  let iconDisplay = document.getElementById("icon");
+  let iconId = response.data.weather[0].icon;
+  iconDisplay.setAttribute("src", `svg/${iconId}.svg`);
+  if (
+    iconId === "01n" ||
+    iconId === "02n" ||
+    iconId === "11d" ||
+    iconId === "11n"
+  ) {
+    iconDisplay.setAttribute("class", "filter-night");
+  }
+  if (iconId === "01d" || iconId === "02d") {
+    iconDisplay.setAttribute("class", "filter-sun");
+  }
+  if (
+    iconId === "03d" ||
+    iconId === "03n" ||
+    iconId === "04d" ||
+    iconId === "04n"
+  ) {
+    iconDisplay.setAttribute("class", "cloud-filter");
+  }
+  if (
+    iconId === "09d" ||
+    iconId === "09n" ||
+    iconId === "10d" ||
+    iconId === "10n"
+  ) {
+    iconDisplay.setAttribute("class", "rain-filter");
+  }
+  if (
+    iconId === "13d" ||
+    iconId === "13n" ||
+    iconId === "50d" ||
+    iconId === "50n"
+  ) {
+    iconDisplay.setAttribute("class", "snow-filter");
+  }
 }
 
 let apiKey = "d0f1f61addef481963fc463729e402e0";
-let city = "New York";
+let city = "Kyiv";
 let units = "metric";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
