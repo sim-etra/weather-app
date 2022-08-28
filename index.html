@@ -21,6 +21,21 @@
   <body>
     <div class="container">
       <div class="weather-app">
+        <form class="input-group mb-3" id="search-form">
+          <input
+            type="text"
+            class="form-control search-form"
+            id="form-input"
+            placeholder="Type a city..."
+            autocomplete="off"
+          />
+          <input type="button" value="⭐" class="input-group-text gps-search" />
+          <input
+            type="submit"
+            value="Search"
+            class="input-group-text search-button"
+          />
+        </form>
         <header>
           <h1 id="city"></h1>
           <p>Last update: <span class="current-date" id="date"></span></p>

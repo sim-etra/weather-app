@@ -30,6 +30,30 @@ footer {
   background-color: #f9f9ff;
 }
 
+.search-form {
+  background-color: #fdfcfd;
+  border-color: #c990cf;
+}
+
+.gps-search,
+.search-button {
+  border-color: #c990cf;
+  background-color: #fdfcff;
+  transition: all 200ms ease-in-out;
+}
+
+.gps-search:hover,
+.search-button:hover {
+  background-color: #7842a5;
+  color: #fff;
+}
+
+.gps-search:focus,
+.search-button:focus {
+  box-shadow: 5px 5px 5px #7842a5;
+  background-color: #7842a5;
+}
+
 .temperature,
 .weather-icon {
   line-height: 1;
