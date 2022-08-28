@@ -17,7 +17,7 @@ hr {
 }
 
 footer {
-  padding-top: 25px;
+  padding-top: 40px;
 }
 
 a {
@@ -26,6 +26,7 @@ a {
 
 a:hover {
   cursor: default;
+  text-decoration: underline;
 }
 
 .weather-app {
@@ -125,4 +126,24 @@ a:hover {
 
 .weather-condition::first-letter {
   text-transform: capitalize;
+}
+
+.weather-forecast {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.forecast-date {
+  color: #8a61ae;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.forecast-temp {
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.forecast-temp-min {
+  opacity: 0.7;
 }
