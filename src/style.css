@@ -9,6 +9,7 @@ header {
 
 header h1 {
   margin-bottom: 0;
+  margin-top: 35px;
   color: #770082;
 }
 
@@ -130,7 +131,7 @@ a:hover {
 
 .weather-forecast {
   text-align: center;
-  margin-top: 15px;
+  margin-top: 40px;
 }
 
 .forecast-date {
@@ -141,7 +142,7 @@ a:hover {
 
 .forecast-temp {
   font-size: 15px;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .forecast-temp-min {

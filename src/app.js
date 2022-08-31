@@ -22,6 +22,36 @@ function formatDate(timestamp) {
   return `${day} ${hour}:${minutes}`;
 }
 
+function displayForecast() {
+  let forecastElement = document.getElementById("forecast");
+
+  let forecastHTML = `<div class="row">`;
+  days = ["Mon", "Tue", "Wed"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+            <div class="col-2">
+              <div class="forecast-date">${day}</div>
+              <img
+                src="file:///C:/Users/Diana/SheCodes/weather-app/svg/03n.svg"
+                alt="Bootstrap"
+                width="40"
+                height="40"
+              />
+              <div class="forecast-temp">
+                <span class="forecast-temp-max">25°</span>
+                <span class="forecast-temp-min">16°</span>
+              </div>
+            </div>
+          `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function displayTemperature(response) {
   celsiusTemperature = response.data.main.temp;
 
@@ -120,3 +150,4 @@ fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 document.getElementById("search-form").addEventListener("click", handleSubmit);
 
 search("Kyiv");
+displayForecast();
