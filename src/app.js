@@ -22,51 +22,8 @@ function formatDate(timestamp) {
   return `${day} ${hour}:${minutes}`;
 }
 
-function displayForecast() {
-  let forecastElement = document.getElementById("forecast");
-
-  let forecastHTML = `<div class="row">`;
-  days = ["Mon", "Tue", "Wed"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-            <div class="col-2">
-              <div class="forecast-date">${day}</div>
-              <img
-                src="file:///C:/Users/Diana/SheCodes/weather-app/svg/03n.svg"
-                alt="Bootstrap"
-                width="40"
-                height="40"
-              />
-              <div class="forecast-temp">
-                <span class="forecast-temp-max">25°</span>
-                <span class="forecast-temp-min">16°</span>
-              </div>
-            </div>
-          `;
-  });
-
-  forecastHTML = forecastHTML + `</div>`;
-
-  forecastElement.innerHTML = forecastHTML;
-}
-
-function displayTemperature(response) {
-  celsiusTemperature = response.data.main.temp;
-
-  document.getElementById("temperature").innerHTML =
-    Math.round(celsiusTemperature);
-  document.getElementById("city").innerHTML = response.data.name;
-  document.getElementById("description").innerHTML =
-    response.data.weather[0].description;
-  document.getElementById("humidity").innerHTML = response.data.main.humidity;
-  document.getElementById("wind-speed").innerHTML = response.data.wind.speed;
-  document.getElementById("date").innerHTML = formatDate(
-    response.data.dt * 1000
-  );
+function showIcon(iconId) {
   let iconDisplay = document.getElementById("icon");
-  let iconId = response.data.weather[0].icon;
   iconDisplay.setAttribute("src", `svg/${iconId}.svg`);
   if (
     iconId === "01n" ||
@@ -105,10 +62,65 @@ function displayTemperature(response) {
   }
 }
 
+function displayForecast(response) {
+  console.log(response.data.daily);
+  let forecastElement = document.getElementById("forecast");
+
+  let forecastHTML = `<div class="row">`;
+  days = ["Mon", "Tue", "Wed"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+            <div class="col-2">
+              <div class="forecast-date">${day}</div>
+              <img
+                src="file:///C:/Users/Diana/SheCodes/weather-app/svg/03n.svg"
+                alt="Bootstrap"
+                width="40"
+                height="40"
+              />
+              <div class="forecast-temp">
+                <span class="forecast-temp-max">25°</span>
+                <span class="forecast-temp-min">16°</span>
+              </div>
+            </div>
+          `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coords) {
+  let apiKey = "215576bab28022db35e6e64f040e1b56";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lon}&appid=${apiKey}`;
+
+  axios.get(apiUrl).then(displayForecast);
+}
+
+function displayTemperature(response) {
+  celsiusTemperature = response.data.main.temp;
+
+  document.getElementById("temperature").innerHTML =
+    Math.round(celsiusTemperature);
+  document.getElementById("city").innerHTML = response.data.name;
+  document.getElementById("description").innerHTML =
+    response.data.weather[0].description;
+  document.getElementById("humidity").innerHTML = response.data.main.humidity;
+  document.getElementById("wind-speed").innerHTML = response.data.wind.speed;
+  document.getElementById("date").innerHTML = formatDate(
+    response.data.dt * 1000
+  );
+
+  showIcon(response.data.weather[0].icon);
+
+  getForecast(response.data.coord);
+}
+
 function search(city) {
-  let apiKey = "d0f1f61addef481963fc463729e402e0";
-  let units = "metric";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+  let apiKey = "215576bab28022db35e6e64f040e1b56";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(displayTemperature);
 }
