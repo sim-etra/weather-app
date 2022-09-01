@@ -22,46 +22,6 @@ function formatDate(timestamp) {
   return `${day} ${hour}:${minutes}`;
 }
 
-function showIcon(iconId) {
-  let iconDisplay = document.querySelectorAll("img");
-
-  if (
-    iconId === "01n" ||
-    iconId === "02n" ||
-    iconId === "11d" ||
-    iconId === "11n"
-  ) {
-    return iconId + Element.setAttribute("class", "filter-night");
-  }
-  if (iconId === "01d" || iconId === "02d") {
-    return iconId + Element.setAttribute("class", "filter-sun");
-  }
-  if (
-    iconId === "03d" ||
-    iconId === "03n" ||
-    iconId === "04d" ||
-    iconId === "04n"
-  ) {
-    return iconId + Element.setAttribute("class", "cloud-filter");
-  }
-  if (
-    iconId === "09d" ||
-    iconId === "09n" ||
-    iconId === "10d" ||
-    iconId === "10n"
-  ) {
-    return iconId + Element.setAttribute("class", "rain-filter");
-  }
-  if (
-    iconId === "13d" ||
-    iconId === "13n" ||
-    iconId === "50d" ||
-    iconId === "50n"
-  ) {
-    return iconId + Element.setAttribute("class", "snow-filter");
-  }
-}
-
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -175,4 +135,3 @@ fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 document.getElementById("search-form").addEventListener("click", handleSubmit);
 
 search("Kyiv");
-displayForecast();
