@@ -23,18 +23,18 @@ function formatDate(timestamp) {
 }
 
 function showIcon(iconId) {
-  let iconDisplay = document.getElementById("icon");
-  iconDisplay.setAttribute("src", `svg/${iconId}.svg`);
+  let iconDisplay = document.querySelectorAll("img");
+
   if (
     iconId === "01n" ||
     iconId === "02n" ||
     iconId === "11d" ||
     iconId === "11n"
   ) {
-    iconDisplay.setAttribute("class", "filter-night");
+    return iconId + Element.setAttribute("class", "filter-night");
   }
   if (iconId === "01d" || iconId === "02d") {
-    iconDisplay.setAttribute("class", "filter-sun");
+    return iconId + Element.setAttribute("class", "filter-sun");
   }
   if (
     iconId === "03d" ||
@@ -42,7 +42,7 @@ function showIcon(iconId) {
     iconId === "04d" ||
     iconId === "04n"
   ) {
-    iconDisplay.setAttribute("class", "cloud-filter");
+    return iconId + Element.setAttribute("class", "cloud-filter");
   }
   if (
     iconId === "09d" ||
@@ -50,7 +50,7 @@ function showIcon(iconId) {
     iconId === "10d" ||
     iconId === "10n"
   ) {
-    iconDisplay.setAttribute("class", "rain-filter");
+    return iconId + Element.setAttribute("class", "rain-filter");
   }
   if (
     iconId === "13d" ||
@@ -58,43 +58,54 @@ function showIcon(iconId) {
     iconId === "50d" ||
     iconId === "50n"
   ) {
-    iconDisplay.setAttribute("class", "snow-filter");
+    return iconId + Element.setAttribute("class", "snow-filter");
   }
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let day = days[date.getDay()];
+  return day;
+}
+
 function displayForecast(response) {
-  console.log(response.data.daily);
   let forecastElement = document.getElementById("forecast");
+  let forecast = response.data.daily;
 
   let forecastHTML = `<div class="row">`;
-  days = ["Mon", "Tue", "Wed"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (day, index) {
+    if (index < 6) {
+      forecastHTML += `
             <div class="col-2">
-              <div class="forecast-date">${day}</div>
+              <div class="forecast-date">${formatDay(day.dt)}</div>
               <img
-                src="file:///C:/Users/Diana/SheCodes/weather-app/svg/03n.svg"
+                src="svg/${day.weather[0].icon}.svg"
                 alt="Bootstrap"
                 width="40"
                 height="40"
+                
               />
               <div class="forecast-temp">
-                <span class="forecast-temp-max">25°</span>
-                <span class="forecast-temp-min">16°</span>
+                <span class="forecast-temp-max">${Math.round(
+                  day.temp.max
+                )}°</span>
+                <span class="forecast-temp-min">${Math.round(
+                  day.temp.min
+                )}°</span>
               </div>
             </div>
           `;
+    }
   });
 
-  forecastHTML = forecastHTML + `</div>`;
+  forecastHTML += `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
 
 function getForecast(coords) {
   let apiKey = "215576bab28022db35e6e64f040e1b56";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lon}&appid=${apiKey}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.lon}&appid=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(displayForecast);
 }
@@ -113,7 +124,9 @@ function displayTemperature(response) {
     response.data.dt * 1000
   );
 
-  showIcon(response.data.weather[0].icon);
+  document
+    .getElementById("icon")
+    .setAttribute("src", `svg/${response.data.weather[0].icon}.svg`);
 
   getForecast(response.data.coord);
 }
