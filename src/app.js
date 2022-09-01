@@ -104,6 +104,16 @@ function handleSubmit(event) {
   search(inputValue.value);
 }
 
+function displayPosition(position) {
+  let apiKey = "215576bab28022db35e6e64f040e1b56";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+function getCurrentPosition() {
+  navigator.geolocation.getCurrentPosition(displayPosition);
+}
+
 function displayCelsiusTemperature(event) {
   event.preventDefault();
 
@@ -133,5 +143,8 @@ let fahrenheitLink = document.getElementById("fahrenheit-link");
 fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
 document.getElementById("search-form").addEventListener("click", handleSubmit);
+document
+  .getElementById("gps-search")
+  .addEventListener("click", getCurrentPosition);
 
 search("Kyiv");
